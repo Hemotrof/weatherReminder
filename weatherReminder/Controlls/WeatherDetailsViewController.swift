@@ -8,9 +8,30 @@
 import UIKit
 
 class WeatherDetailsViewController: UIViewController {
+
+
+    @IBOutlet weak var detailsTableView: UITableView!
+    
+    override func viewDidLoad() {
+        view.addSubview(detailsTableView)
+    }
     
     
-    @IBOutlet weak var table: UITableView!
+    func showTodayDetails () {
+        
+    }
+    
+    func showTomorrowDetails () {
+        
+    }
+    
+    func threeDaysDetails () {
+        
+    }
+    
+    func weekDetails () {
+        
+    }
     
 
     

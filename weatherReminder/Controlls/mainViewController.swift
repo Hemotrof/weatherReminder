@@ -10,7 +10,7 @@ import UIKit
 
 class mainViewController: UIViewController, SearchLocationViewDelegate {
     
-    let networkManager = NetworkManager()
+    var networkManager = NetworkManager()
      
     
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -49,10 +49,9 @@ class mainViewController: UIViewController, SearchLocationViewDelegate {
     
     
     func updateCurrentWeather (fromWeather weather: Weather) {
-        
         DispatchQueue.main.async {
-            self.windLabel.text = String(weather.windspeed)
-            self.temperatureLabel.text = String(weather.temperature)
+            self.windLabel.text = String(weather.windspeed!)
+            self.temperatureLabel.text = String(weather.temperature!)
         }
         
     }

@@ -25,7 +25,6 @@ class NetworkManager {
     
     fileprivate func executeRequest(url: URL) {
         
-        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -45,8 +44,9 @@ class NetworkManager {
         
         let decoder = JSONDecoder()
                 do {
-                    let weatherData = try decoder.decode(WeatherData.self, from: data)
-                    guard let currentWeather = Weather(currentWeatherData: weatherData) else {
+                    let weatherData = try decoder.decode(HourlyWeatherData.self, from: data)
+                    let currentWeatherData = weatherData.currentWeather!
+                    guard let currentWeather = Weather(currentWeather: currentWeatherData) else {
                         return nil
                     }
                     return currentWeather
