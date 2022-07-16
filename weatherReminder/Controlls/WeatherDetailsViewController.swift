@@ -7,32 +7,32 @@
 
 import UIKit
 
-class WeatherDetailsViewController: UIViewController {
+class WeatherDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+    
+    let weatherArray: [HourlyWeatherData] = []
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! weatherCell
 
+        cell.timeLabel.text = "hello"
+        
+        return cell
+    }
+     
+}
 
-    @IBOutlet weak var detailsTableView: UITableView!
+class weatherCell: UITableViewCell {
     
-    override func viewDidLoad() {
-        view.addSubview(detailsTableView)
-    }
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var windspeedLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var cloudinessLabel: UILabel!
     
-    
-    func showTodayDetails () {
-        
-    }
-    
-    func showTomorrowDetails () {
-        
-    }
-    
-    func threeDaysDetails () {
-        
-    }
-    
-    func weekDetails () {
-        
-    }
-    
-
     
 }

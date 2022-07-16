@@ -39,7 +39,6 @@ class NetworkManager {
         task.resume()
     }
     
-    
     func parsingJson(withData data: Data) -> Weather? {
         
         let decoder = JSONDecoder()

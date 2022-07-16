@@ -8,24 +8,26 @@
 import UIKit
 
 
-class mainViewController: UIViewController, SearchLocationViewDelegate {
+class MainViewController: UIViewController, SearchLocationViewDelegate {
     
     var networkManager = NetworkManager()
-     
     
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var pageCounter: UIPageControl!
     
     
-    @IBOutlet weak var sunriseLabel: UILabel!
-    @IBOutlet weak var sunsetLabel: UILabel!
+    let defaultLatitude = 51.50
+    let defaultLongitude = -0.11
+    let defaultName = "London"
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
+        self.fillLocation(latitude: Float(defaultLatitude),
+                                        longitude: Float(defaultLongitude),
+                                        name: defaultName)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,17 +38,15 @@ class mainViewController: UIViewController, SearchLocationViewDelegate {
     }
     
     func fillLocation (latitude: Float, longitude: Float, name: String) {
-        navigationItem.title = name
+        locationLabel.text = name
         
         networkManager.fetchCurrentWeather(latitude: latitude, longitude: longitude)
         networkManager.onCompletion = { [weak self] weather in
             guard let self = self else { return }
             self.updateCurrentWeather(fromWeather: weather)
-            
         }
         
     }
-    
     
     func updateCurrentWeather (fromWeather weather: Weather) {
         DispatchQueue.main.async {
