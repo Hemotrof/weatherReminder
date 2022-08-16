@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct HourlyWeatherData: Codable {
+struct WeatherData: Codable {
     
     let currentWeather: CurrentWeather?
-    let hourly: HourlyWeather?
+    let hourlyWeather: HourlyWeather?
     
     enum CodingKeys: String, CodingKey {
         case currentWeather = "current_weather"
-        case hourly = "hourly"
+        case hourlyWeather = "hourly"
     }
 }
 
@@ -22,8 +22,8 @@ struct CurrentWeather: Codable {
     
     let temperature: Float
     let windspeed: Float
-    let winddirection: Int
-    let weathercode: Int
+    let winddirection: Float
+    let weathercode: Float
     
     enum CodingKeys: String, CodingKey {
         case temperature = "temperature"
@@ -36,13 +36,13 @@ struct CurrentWeather: Codable {
 struct HourlyWeather: Codable {
     
     let temperature: [Float]
-    let relativeHumidity: [Int]
+    let relativeHumidity: [Float]
     let precipitation: [Float]
-    let windDirection: [Int]
-    let cloudcover: [Int]
+    let windDirection: [Float]
+    let cloudcover: [Float]
     let windSpeed: [Float]
     let apparentTemperature: [Float]
-    let weatherCode: [Int]
+    let weatherCode: [Float]
     let time: [String]
     
     

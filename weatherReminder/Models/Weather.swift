@@ -8,21 +8,43 @@
 import Foundation
 
 
-class Weather {
+struct Weather {
     
-    let temperature: Float?
-    let windspeed: Float?
-    let winddirection: Int?
-    let weathercode: Int?
+    let current_temperature: Float?
+    let current_windspeed: Float?
+    let current_winddirection: Float?
+    let current_weathercode: Float?
+    
+    let hourly_temperature: [Float]
+    let hourly_relativeHumidity: [Float]
+    let hourly_precipitation: [Float]
+    let hourly_windDirection: [Float]
+    let hourly_cloudcover: [Float]
+    let hourly_windSpeed: [Float]
+    let hourly_apparentTemperature: [Float]
+    let hourly_weatherCode: [Float]
+    let time: [String]
     
 
-    init?(currentWeather: CurrentWeather) {
+    init?(weather: WeatherData) {
+        
+        guard let currentWeather = weather.currentWeather else {return nil}
+        guard let hourlyWeather = weather.hourlyWeather else {return nil}
                 
-        temperature = currentWeather.temperature
-        windspeed = currentWeather.windspeed
-        winddirection = currentWeather.winddirection
-        weathercode = currentWeather.weathercode
+        current_temperature = currentWeather.temperature
+        current_windspeed = currentWeather.windspeed
+        current_winddirection = currentWeather.winddirection
+        current_weathercode = currentWeather.weathercode
+        
+        hourly_temperature = hourlyWeather.temperature
+        hourly_relativeHumidity = hourlyWeather.relativeHumidity
+        hourly_precipitation = hourlyWeather.precipitation
+        hourly_windDirection = hourlyWeather.windDirection
+        hourly_cloudcover = hourlyWeather.cloudcover
+        hourly_windSpeed = hourlyWeather.windSpeed
+        hourly_apparentTemperature = hourlyWeather.apparentTemperature
+        hourly_weatherCode = hourlyWeather.weatherCode
+        time = hourlyWeather.time
     }
-    
     
 }

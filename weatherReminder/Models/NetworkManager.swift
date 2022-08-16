@@ -11,12 +11,15 @@ class NetworkManager {
     
     var onCompletion: ((Weather) -> Void)?
     
-    func fetchCurrentWeather(latitude: Float, longitude: Float) {
+    func fetchWeather(latitude: String, longitude: String) {
         
         var urlComponents = URLComponents(string: baseUrl)!
         var queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
-        queryItems.append(URLQueryItem(name: "latitude", value: String(latitude)))
-        queryItems.append(URLQueryItem(name: "longitude", value: String(longitude)))
+        queryItems.append(URLQueryItem(name: "latitude", value: latitude))
+        queryItems.append(URLQueryItem(name: "longitude", value: longitude))
+        
+        queryItems.append(URLQueryItem(name: "hourly", value: "temperature_2m,relativehumidity_2m,apparent_temperature,precipitation,weathercode,cloudcover,windspeed_10m,winddirection_10m"))
+        
         queryItems.append(URLQueryItem(name: "current_weather", value: "true"))
         urlComponents.queryItems = queryItems
             
@@ -40,15 +43,13 @@ class NetworkManager {
     }
     
     func parsingJson(withData data: Data) -> Weather? {
-        
         let decoder = JSONDecoder()
                 do {
-                    let weatherData = try decoder.decode(HourlyWeatherData.self, from: data)
-                    let currentWeatherData = weatherData.currentWeather!
-                    guard let currentWeather = Weather(currentWeather: currentWeatherData) else {
+                    let weatherData = try decoder.decode(WeatherData.self, from: data)
+                    guard let weather_n = Weather(weather: weatherData) else {
                         return nil
                     }
-                    return currentWeather
+                    return weather_n
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }

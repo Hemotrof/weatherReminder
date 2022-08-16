@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 protocol SearchLocationViewDelegate {
-    func fillLocation (latitude: Float, longitude: Float, name: String)
+    func fillLocation (latitude: String, longitude: String, name: String)
 }
 
 class SearchLocationViewController: UIViewController, UISearchBarDelegate, MKLocalSearchCompleterDelegate {
@@ -113,11 +113,11 @@ extension SearchLocationViewController: UITableViewDelegate {
                 return
             }
 
-            let lat = Float(coordinate.latitude)
-            let lon = Float(coordinate.longitude)
+            main_latitude = String(coordinate.latitude)
+            main_longitude = String(coordinate.longitude)
             
 
-            delegate?.fillLocation(latitude: lat, longitude: lon, name: name)
+            delegate?.fillLocation(latitude: main_latitude, longitude: main_longitude, name: name)
             self.dismiss(animated: true, completion: nil)
 
         }
