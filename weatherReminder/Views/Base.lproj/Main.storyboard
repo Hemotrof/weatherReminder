@@ -63,12 +63,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJN-6D-CUG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="-628"/>
+            <point key="canvasLocation" x="2393" y="-627"/>
         </scene>
-        <!--Main Table View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="9iD-Em-ZbS">
             <objects>
-                <tableViewController id="TJf-S6-N7D" customClass="MainTableViewController" customModule="weatherReminder" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="TJf-S6-N7D" customClass="MainViewController" customModule="weatherReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="gnk-aK-XDM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -226,12 +226,17 @@
                                     <constraint firstItem="oAC-7k-UpD" firstAttribute="top" secondItem="kzP-3h-hQ8" secondAttribute="top" id="mYQ-XR-EBb"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="backgroundView" destination="oAC-7k-UpD" id="CHp-MV-R5w"/>
+                                    <outlet property="backgroundView" destination="oAC-7k-UpD" id="rTa-ja-fbi"/>
+                                    <outlet property="currentHumidityLabel" destination="OkW-LE-Cga" id="hk0-Ox-aVw"/>
+                                    <outlet property="currentPressureLabel" destination="sR6-5H-1hQ" id="Crl-d6-Mf1"/>
                                     <outlet property="currentTemperatureLabel" destination="eWR-oN-nWC" id="j0N-Yt-Hw1"/>
                                     <outlet property="currentWeatherImage" destination="HRM-uA-OAA" id="z5x-eK-Gia"/>
+                                    <outlet property="currentWindLabel" destination="yu9-en-Qol" id="5Ji-Ly-qnT"/>
+                                    <outlet property="currentСhanceOfRainLabel" destination="xUR-oa-5wm" id="gur-Bm-2kB"/>
+                                    <outlet property="view" destination="oAC-7k-UpD" id="bH6-qN-5i2"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="hourlyWeatherCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="163" id="PYV-NF-5qR">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="hourlyWeatherCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hourlyDetatilsCell" rowHeight="163" id="PYV-NF-5qR" customClass="HourlyWeatherCell" customModule="weatherReminder" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="332.5" width="414" height="163"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PYV-NF-5qR" id="jnc-2P-VOb">
@@ -251,7 +256,7 @@
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LSc-Co-Tky">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hourCell" id="LSc-Co-Tky" customClass="HourCell" customModule="weatherReminder" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="185" height="135"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QBJ-5g-go3">
@@ -269,8 +274,11 @@
                                     <constraint firstItem="KEN-bu-KU7" firstAttribute="leading" secondItem="PYV-NF-5qR" secondAttribute="leading" constant="28" id="bYp-gn-NiH"/>
                                     <constraint firstAttribute="trailing" secondItem="KEN-bu-KU7" secondAttribute="trailing" id="ukU-sT-BVc"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="collectionView" destination="KEN-bu-KU7" id="WQN-P7-Vmb"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="daylyWeatherCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="515" id="Zzw-nG-KL6">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="daylyWeatherCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="515" id="Zzw-nG-KL6" customClass="DailyWeatherCell" customModule="weatherReminder" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="495.5" width="414" height="515"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zzw-nG-KL6" id="SYG-tg-NZh">
@@ -308,7 +316,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgA-pV-cxb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2730.434782608696" y="66.964285714285708"/>
+            <point key="canvasLocation" x="2393" y="67"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Ax-rs-zNv">
